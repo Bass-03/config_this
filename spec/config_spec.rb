@@ -1,6 +1,6 @@
 RSpec.describe Config do
   it "has a version number" do
-    expect(ConfigMe::VERSION).not_to be nil
+    expect(Config::VERSION).not_to be nil
   end
 
   context "Config::Configuration class" do

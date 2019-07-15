@@ -2,7 +2,7 @@ require_relative 'lib/config/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "config"
-  spec.version       = ConfigMe::VERSION
+  spec.version       = Config::VERSION
   spec.authors       = ["Edmundo Sanchez"]
   spec.email         = ["zomundo@gmail.com"]
 
