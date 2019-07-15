@@ -1,4 +1,4 @@
-# Config
+# Config_this
 
 Have you ever wondered where is the right way to store sensitive information like passwords for your ruby scripts and gems?
 
@@ -11,14 +11,14 @@ These are the resources I found:
 
 I also found using a file is the best way to store sensitive information but there are use cases to have Environmental variables or just hard coding values.
 
-With **Config** you can load your configuration parameters from a YAML or json file, a block or a hash.
+With **Config_this** you can load your configuration parameters from a YAML or json file, a block or a hash.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'config'
+gem 'config_this'
 ```
 
 And then execute:
@@ -27,7 +27,7 @@ And then execute:
 
 Or install it yourself as:
 
-`    $ gem install config`
+`    $ gem install config_this`
 
 ## Usage
 
