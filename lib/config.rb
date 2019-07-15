@@ -5,14 +5,16 @@ require "json"
 # @author Edmundo Sanchez
 # Configuration module
 module Config
+  # Error Class
   class Error < StandardError; end
   # Get configuration
-  # @return [Config] configuration
+  # @return [Configuration] configuration
   def self.get
     @configuration ||= Configuration.new
   end
   # Set Configuration with a block
-  # @param [Hash] Configuration Hash
+  # @param config [Hash] Configuration Hash
+  # @return [Configuration] configuration
   def self.set(config)
     @configuration = Configuration.new do |conf|
       config.each do |key,value|
@@ -21,23 +23,27 @@ module Config
     end
   end
   # Reset the configuration to an empty Configuration object
+  # @return [Configuration] configuration
   def self.reset
     @configuration = Configuration.new
   end
   # Read YAML file and set configuration
-  # @param [String] Absolute Path to Yaml file
+  # @param path [String] Absolute Path to Yaml file
+  # @return [Configuration] configuration
   def self.yaml_file(path)
     self.set YAML.load_file(path)
   end
   # Read JSON file and set configuration
-  # @param [String] Absolute Path to Yaml file
+  # @param path [String] Absolute Path to Yaml file
+  # @return [Configuration] configuration
   def self.json_file(path)
     file = File.read(path)
     self.set JSON.parse(file)
   end
   # Read Environmental Variables and set configuration
-  # Note All values will be strings by definition
-  # @param [Array] List of Environmental variables
+  # @note All values will be strings by definition
+  # @param variables [Array] List of Environmental variables
+  # @return [Configuration] configuration
   def self.env_variables(*variables)
     variables.map! do |var|
       [var,ENV[var]]
@@ -45,6 +51,7 @@ module Config
     self.set(Hash[*variables.flatten])
   end
 
+  # Template for the Configuration object
   class Configuration
     # If block given, greate all instance variables
     # @return [Configuration] self
