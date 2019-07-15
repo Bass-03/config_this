@@ -1,21 +1,21 @@
-require_relative 'lib/config_me/version'
+require_relative 'lib/config/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "config_me"
+  spec.name          = "config"
   spec.version       = ConfigMe::VERSION
   spec.authors       = ["Edmundo Sanchez"]
   spec.email         = ["zomundo@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "An easy way to create configuration for your gem or script"
+  spec.description   = "Create a configuration object with yaml, json, env variables, or ruby"
+  spec.homepage      = "https://github.com/mundo03/config_me/releases"
   spec.license       = "MIT"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  #spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "https://github.com/mundo03/config_me/releases"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.1.a"
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "yard", "~> 0.9.2"
 end
