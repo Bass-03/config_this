@@ -1,4 +1,7 @@
 require "config/version"
+require "yaml"
+require "json"
+
 # @author Edmundo Sanchez
 # Configuration module
 module Config
@@ -21,6 +24,27 @@ module Config
   def self.reset
     @configuration = Configuration.new
   end
+  # Read YAML file and set configuration
+  # @param [String] Absolute Path to Yaml file
+  def self.yaml_file(path)
+    self.set YAML.load_file(path)
+  end
+  # Read JSON file and set configuration
+  # @param [String] Absolute Path to Yaml file
+  def self.json_file(path)
+    file = File.read(path)
+    self.set JSON.parse(file)
+  end
+  # Read Environmental Variables and set configuration
+  # Note All values will be strings by definition
+  # @param [Array] List of Environmental variables
+  def self.env_variables(*variables)
+    variables.map! do |var|
+      [var,ENV[var]]
+    end
+    self.set(Hash[*variables.flatten])
+  end
+
   class Configuration
     # If block given, greate all instance variables
     # @return [Configuration] self
@@ -40,3 +64,4 @@ module Config
       end
     end
   end
+end

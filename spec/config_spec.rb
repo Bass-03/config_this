@@ -42,6 +42,23 @@ RSpec.describe Config do
       expect(Config.get.instance_variables).to eq []
     end
 
+    it "Can set Configuration from a YAML file" do
+      Config.yaml_file(Dir.pwd + "/spec/yaml_test.yaml")
+      expect(Config.get.instance_variables).to include :@id, :@name, :@weapon
+    end
+
+    it "Can set Configuration from a JSON file" do
+      Config.json_file(Dir.pwd + "/spec/json_test.json")
+      expect(Config.get.instance_variables).to include :@id, :@name, :@weapon
+    end
+
+    it "Can set Configuration from Environmental Variables" do
+      ENV["id"] = "42"
+      ENV["name"] = "Arthur Dent"
+      ENV["weapon"] = "Towel"
+      Config.env_variables("id","name","weapon")
+      expect(Config.get.instance_variables).to include :@id, :@name, :@weapon
+    end
   end
 
 end
