@@ -17,4 +17,31 @@ RSpec.describe Config do
       expect(config.instance_variable_defined?(var_name)).to be true
     end
   end
+
+  context "Config Module" do
+    it "Can get an Empty Configuration object" do
+      expect(Config.get).to be_instance_of Config::Configuration
+    end
+
+    it "Can set an Empty Configuration object" do
+      expect(Config.set({})).to be_instance_of Config::Configuration
+    end
+
+    it "Can set a non-Empty Configuration object" do
+      expect(Config.set({:id=>42})).to be_instance_of Config::Configuration
+    end
+
+    it "Can set a non-Empty Configuration object, check value" do
+      Config.set({"id"=>42})
+      expect(Config.get.id).to eq 42
+    end
+
+    it "Can set reset to empy Configuration object" do
+      Config.set({"id"=>42})
+      Config.reset
+      expect(Config.get.instance_variables).to eq []
+    end
+
+  end
+
 end

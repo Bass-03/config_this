@@ -3,6 +3,24 @@ require "config/version"
 # Configuration module
 module Config
   class Error < StandardError; end
+  # Get configuration
+  # @return [Config] configuration
+  def self.get
+    @configuration ||= Configuration.new
+  end
+  # Set Configuration with a block
+  # @param [Hash] Configuration Hash
+  def self.set(config)
+    @configuration = Configuration.new do |conf|
+      config.each do |key,value|
+        conf.instance_variable_set("@#{key}",value)
+      end
+    end
+  end
+  # Reset the configuration to an empty Configuration object
+  def self.reset
+    @configuration = Configuration.new
+  end
   class Configuration
     # If block given, greate all instance variables
     # @return [Configuration] self
