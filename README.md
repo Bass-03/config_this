@@ -4,6 +4,13 @@ Have you ever wondered where is the right way to store sensitive information lik
 
 I have, doing some research I found a few ways to create a class that will help set  configuration object for your script, but I would have to write it for every script I write, so I created this gem.
 
+These are the resources I found:
+[Liz Abinante's Blog](http://lizabinante.com/blog/creating-a-configurable-ruby-gem/)
+[Victor Afanasev Medium's article](https://medium.com/@vfreefly/the-most-simple-configuration-block-implementation-for-a-ruby-gem-815fe1dad5dc)
+
+
+I also found using a file is the best way to store sensitive information but there are use cases to have Environmental variables or just hard coding values.
+
 With **Config** you can load your configuration parameters from a YAML or json file, a block or a hash.
 
 ## Installation
@@ -16,11 +23,11 @@ gem 'config'
 
 And then execute:
 
-    $ bundle install
+`    $ bundle install`
 
 Or install it yourself as:
 
-    $ gem install config
+`    $ gem install config`
 
 ## Usage
 
@@ -73,12 +80,47 @@ Config.json_file("/absolute/path/file.json")
 ```
 
 ### Setting it with a Environmental Variables
-Be sute the variables are set and accesible
+Be sure the variables are set and accesible
 ``` ruby
 ENV["id"] = "42"
 ENV["name"] = "Arthur Dent"
 Config.env_variables("id","name")
  => #<Config::Configuration:0x000055d538ef8b58 @id="42", @name="Arthur Dent">
+```
+
+### Setting it with a Block
+To do this, you have to use the Config::Configuration class directly
+
+``` ruby
+config = Config::Configuration.new do |c|
+  c.id = 1
+  c.name = "Stefán Karl Stefánsson"
+end
+p config
+ => #<Config::Configuration:0x00005630c8eda630 @id=1, @name="Stefán Karl Stefánsson">
+```
+
+## Using the Configuration
+
+``` ruby
+Config.get
+ => #<Config::Configuration:0x000055d538f3c9c0 @id=42, @name="Arthur Dent">
+Config.get.id
+ => 42
+config = Config.get
+config.id
+ => 42
+config.name
+ => "Arthur Dent"
+```
+
+You can also just set new values to the Configuration object
+
+``` ruby
+config = Config.get
+config.location = "Earth"
+p config
+ => #<Config::Configuration:0x00005630c87f0e00 @id=42, @name="Arthur Dent", @location="Earth">
 ```
 
 ## Development
@@ -89,7 +131,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/mundo03/config_me.
+Bug reports and pull requests are welcome on GitHub at [this repo](https://github.com/mundo03/config_this).
 
 ## License
 
