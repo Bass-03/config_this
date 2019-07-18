@@ -33,6 +33,10 @@ Or install it yourself as:
 
 The Config Module is the main interface for this gem, as you know you can not instantiate a Module so be careful with your values
 
+``` ruby
+require "config"
+```
+
 ### Get the Configuration object
 
 This will get the latest object you created.
